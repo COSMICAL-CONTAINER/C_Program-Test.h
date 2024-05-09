@@ -56,3 +56,12 @@ int main()
     return 0;
 }
 ```
+![test.png](https://github.com/COSMICAL-CONTAINER/C_Program-Test.h/blob/main/pic/test.png)
+
+We can read and print a char bit by bit
+It is possible to read and print an int or float in four bytes, or read and print each byte in eight bits
+
+我们可以对一个char以一位一位的方式读取并打印
+可以对一个int或者float以四个字节读取并打印或者每个字节又以八位读取并打印
+
+
