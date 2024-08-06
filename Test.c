@@ -16,18 +16,25 @@ int main()
     decode_int(int_A);
     putchar('\n');
 
+    // 对长整数1234567891011拆解
+    unsigned long long int long_A = 1234567891011L;
+    printf("%lld\n", long_A);
+
+    decode_long(long_A);
+    putchar('\n');
+
     // 测试修改之后的值
     int a = 0;
     decode_int(a);
     putchar('\n');
-
     data_int_unionTypeDef int_A_union;
     int_A_union.all = a;
     int_A_union.decode.byte0.decode.bit0 = 1;
     int_A_union.decode.byte1.decode.bit1 = 1;
     int_A_union.decode.byte2.decode.bit2 = 1;
     int_A_union.decode.byte3.decode.bit3 = 1;
-
+    a = int_A_union.all;
+    printf("%d\n", a);
     decode_int(int_A_union.all);
     putchar('\n');
 

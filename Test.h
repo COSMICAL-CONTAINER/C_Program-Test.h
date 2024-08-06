@@ -3,6 +3,23 @@
 
 #include<stdio.h>
 
+#define ADDRESS(obj) ((size_t)&obj)
+
+#define READ_ADDRESS_char(address)    (*(char *)(address))
+#define READ_ADDRESS_uchar(address)   (*(unsigned char *)(address))
+
+#define READ_ADDRESS_short(address)   (*(short *)(address))
+#define READ_ADDRESS_ushort(address)  (*(unsigned short *)(address))
+
+#define READ_ADDRESS_int(address)     (*(int *)(address))
+#define READ_ADDRESS_uint(address)    (*(unsigned int *)(address))
+
+#define READ_ADDRESS_float(address)   (*(float *)(address))
+#define READ_ADDRESS_ufloat(address)  (*(unsigned float *)(address))
+
+#define READ_ADDRESS_double(address)  (*(double *)(address))
+#define READ_ADDRESS_udouble(address) (*(unsigned double *)(address))
+
 // 1字节8位数据解析
 typedef struct _data_char_structTypDef
 {
@@ -67,6 +84,49 @@ void decode_int(unsigned int data_int)
     decode_char(int_A_union.decode.byte1.all);
     printf("Byte 0: ");
     decode_char(int_A_union.decode.byte0.all);
+}
+
+// 8字节64位数据解析
+typedef struct _data_long_structTypDef
+{
+    data_char_unionTypeDef byte0;
+    data_char_unionTypeDef byte1;
+    data_char_unionTypeDef byte2;
+    data_char_unionTypeDef byte3;
+    data_char_unionTypeDef byte4;
+    data_char_unionTypeDef byte5;
+    data_char_unionTypeDef byte6;
+    data_char_unionTypeDef byte7;
+}data_long_structTypeDef;
+
+typedef union _data_long_union
+{
+    unsigned long long int all;
+    data_long_structTypeDef decode;
+}data_long_unionTypeDef;
+
+// 解码long类型
+void decode_long(unsigned long long int data_long) 
+{
+    data_long_unionTypeDef long_A_union;
+
+    long_A_union.all = data_long;
+    printf("Byte 7: ");
+    decode_char(long_A_union.decode.byte7.all);
+    printf("Byte 6: ");
+    decode_char(long_A_union.decode.byte6.all);
+    printf("Byte 5: ");
+    decode_char(long_A_union.decode.byte5.all);
+    printf("Byte 4: ");
+    decode_char(long_A_union.decode.byte4.all);
+    printf("Byte 3: ");
+    decode_char(long_A_union.decode.byte3.all);
+    printf("Byte 2: ");
+    decode_char(long_A_union.decode.byte2.all);
+    printf("Byte 1: ");
+    decode_char(long_A_union.decode.byte1.all);
+    printf("Byte 0: ");
+    decode_char(long_A_union.decode.byte0.all);
 }
 
 #endif
